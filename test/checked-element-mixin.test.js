@@ -116,6 +116,59 @@ describe('Active state tests', () => {
     });
   });
 
+  describe('Change events', () => {
+    let element;
+    beforeEach(async () => {
+      element = await basicFixture();
+    });
+
+    it('Dispatches change event', () => {
+      const spy = sinon.spy();
+      element.addEventListener('change', spy);
+      element.checked = true;
+      assert.isTrue(spy.called);
+    });
+
+    it('Ignores change event when the value was already set', () => {
+      element.checked = true;
+      const spy = sinon.spy();
+      element.addEventListener('change', spy);
+      element.checked = true;
+      assert.isFalse(spy.called);
+    });
+
+    it('Dispatches iron-change event', () => {
+      const spy = sinon.spy();
+      element.addEventListener('iron-change', spy);
+      element.checked = true;
+      assert.isTrue(spy.called);
+    });
+
+    it('Ignores iron-change event when the value was already set', () => {
+      element.checked = true;
+      const spy = sinon.spy();
+      element.addEventListener('iron-change', spy);
+      element.checked = true;
+      assert.isFalse(spy.called);
+    });
+
+    it('Dispatches checked-changed event', () => {
+      const spy = sinon.spy();
+      element.addEventListener('checked-changed', spy);
+      element.checked = true;
+      assert.isTrue(spy.called);
+      assert.isTrue(spy.args[0][0].detail.value);
+    });
+
+    it('Ignores checked-changed event when the value was already set', () => {
+      element.checked = true;
+      const spy = sinon.spy();
+      element.addEventListener('checked-changed', spy);
+      element.checked = true;
+      assert.isFalse(spy.called);
+    });
+  });
+
   describe('a11y', () => {
     it('setting `required` sets `aria-required=true`', async () => {
       const c = await basicFixture();

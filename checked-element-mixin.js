@@ -80,12 +80,6 @@ export const CheckedElementMixin = dedupingMixin((base) => {
     set checked(value) {
       if (this._setChanged('checked', value)) {
         this._checkedChanged(value);
-        this.dispatchEvent(new CustomEvent('checked-changed', {
-          composed: true,
-          detail: {
-            value
-          }
-        }));
       }
     }
 
@@ -120,12 +114,20 @@ export const CheckedElementMixin = dedupingMixin((base) => {
       }
     }
     /**
-     * Fire `iron-changed`for compatybility wityh iron elements
+     * Fire `iron-changed`for compatybility with iron elements, `change` event
+     * for consistency with HTML elements, and `checked-changed` for Polymer.
      * @param {Boolean} value
      */
     _checkedChanged(value) {
       this.active = value;
+      this.dispatchEvent(new CustomEvent('change'));
       this.dispatchEvent(new CustomEvent('iron-change'));
+      this.dispatchEvent(new CustomEvent('checked-changed', {
+        composed: true,
+        detail: {
+          value
+        }
+      }));
     }
     /**
      * Reset value to 'on' if it is set to `undefined`.
