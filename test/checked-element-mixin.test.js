@@ -1,6 +1,5 @@
 import { fixture, assert } from '@open-wc/testing';
-import { a11ySuite } from '@advanced-rest-client/a11y-suite/index.js';
-import sinon from 'sinon/pkg/sinon-esm.js';
+import sinon from 'sinon';
 import './simple-checkbox.js';
 
 describe('Active state tests', () => {
@@ -186,10 +185,29 @@ describe('Active state tests', () => {
       assert.isFalse(c.hasAttribute('aria-invalid'));
     });
 
-    a11ySuite('Normal state', `<simple-checkbox></simple-checkbox>`);
-    a11ySuite('Checked state', `<simple-checkbox checked></simple-checkbox>`);
-    a11ySuite('Disabled state', `<simple-checkbox disabled></simple-checkbox>`);
-    a11ySuite('Invalid state', `<simple-checkbox invalid></simple-checkbox>`);
-    a11ySuite('Required state', `<simple-checkbox required></simple-checkbox>`);
+    it('is accessible in normal state', async () => {
+      const element = await fixture(`<simple-checkbox></simple-checkbox>`);
+      await assert.isAccessible(element);
+    });
+
+    it('is accessible in checked state', async () => {
+      const element = await fixture(`<simple-checkbox checked></simple-checkbox>`);
+      await assert.isAccessible(element);
+    });
+
+    it('is accessible in disabled state', async () => {
+      const element = await fixture(`<simple-checkbox disabled></simple-checkbox>`);
+      await assert.isAccessible(element);
+    });
+
+    it('is accessible in invalid state', async () => {
+      const element = await fixture(`<simple-checkbox invalid></simple-checkbox>`);
+      await assert.isAccessible(element);
+    });
+
+    it('is accessible in required state', async () => {
+      const element = await fixture(`<simple-checkbox required></simple-checkbox>`);
+      await assert.isAccessible(element);
+    });
   });
 });
