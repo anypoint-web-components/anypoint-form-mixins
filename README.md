@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/anypoint-web-components/anypoint-form-mixins.svg?branch=master)](https://travis-ci.org/anypoint-web-components/anypoint-form-mixins)
+[![Build Status](https://travis-ci.com/anypoint-web-components/anypoint-form-mixins.svg)](https://travis-ci.com/anypoint-web-components/anypoint-form-mixins)
 
 [![Published on NPM](https://img.shields.io/npm/v/@anypoint-web-components/anypoint-form-mixins.svg)](https://www.npmjs.com/package/@anypoint-web-components/anypoint-form-mixins)
 

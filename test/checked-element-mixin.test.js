@@ -4,19 +4,19 @@ import './simple-checkbox.js';
 
 describe('Active state tests', () => {
   async function basicFixture() {
-    return (await fixture(`<simple-checkbox></simple-checkbox>`));
+    return fixture(`<simple-checkbox></simple-checkbox>`);
   }
 
   async function checkedFixture() {
-    return (await fixture(`<simple-checkbox checked></simple-checkbox>`));
+    return fixture(`<simple-checkbox checked></simple-checkbox>`);
   }
 
   async function withValueFixture() {
-    return (await fixture(`<simple-checkbox value="batman"></simple-checkbox>`));
+    return fixture(`<simple-checkbox value="batman"></simple-checkbox>`);
   }
 
   async function requiredFixture() {
-    return (await fixture(`<simple-checkbox required></simple-checkbox>`));
+    return fixture(`<simple-checkbox required></simple-checkbox>`);
   }
 
   describe('Basics', () => {
@@ -93,21 +93,21 @@ describe('Active state tests', () => {
       assert.equal(c.value, 'on', 'returns "on"');
     });
 
-    it('Won\'t call _requiredChanged() when already set', async () => {
+    it("Won't call _requiredChanged() when already set", async () => {
       const c = await requiredFixture();
       const spy = sinon.spy(c, '_requiredChanged');
       c.required = true;
       assert.isFalse(spy.called);
     });
 
-    it('Won\'t call _valueChanged() when already set', async () => {
+    it("Won't call _valueChanged() when already set", async () => {
       const c = await withValueFixture();
       const spy = sinon.spy(c, '_valueChanged');
       c.value = 'batman';
       assert.isFalse(spy.called);
     });
 
-    it('Won\'t call _checkedChanged() when already set', async () => {
+    it("Won't call _checkedChanged() when already set", async () => {
       const c = await checkedFixture();
       const spy = sinon.spy(c, '_checkedChanged');
       c.checked = true;
@@ -191,22 +191,30 @@ describe('Active state tests', () => {
     });
 
     it('is accessible in checked state', async () => {
-      const element = await fixture(`<simple-checkbox checked></simple-checkbox>`);
+      const element = await fixture(
+        `<simple-checkbox checked></simple-checkbox>`
+      );
       await assert.isAccessible(element);
     });
 
     it('is accessible in disabled state', async () => {
-      const element = await fixture(`<simple-checkbox disabled></simple-checkbox>`);
+      const element = await fixture(
+        `<simple-checkbox disabled></simple-checkbox>`
+      );
       await assert.isAccessible(element);
     });
 
     it('is accessible in invalid state', async () => {
-      const element = await fixture(`<simple-checkbox invalid></simple-checkbox>`);
+      const element = await fixture(
+        `<simple-checkbox invalid></simple-checkbox>`
+      );
       await assert.isAccessible(element);
     });
 
     it('is accessible in required state', async () => {
-      const element = await fixture(`<simple-checkbox required></simple-checkbox>`);
+      const element = await fixture(
+        `<simple-checkbox required></simple-checkbox>`
+      );
       await assert.isAccessible(element);
     });
   });
