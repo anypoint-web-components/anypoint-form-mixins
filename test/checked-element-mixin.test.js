@@ -2,19 +2,33 @@ import { fixture, assert } from '@open-wc/testing';
 import sinon from 'sinon';
 import './simple-checkbox.js';
 
+/** @typedef {import('./simple-checkbox').SimpleCheckbox} SimpleCheckbox */
+
 describe('Active state tests', () => {
+  /**
+   * @returns {Promise<SimpleCheckbox>}
+   */
   async function basicFixture() {
     return fixture(`<simple-checkbox></simple-checkbox>`);
   }
 
+  /**
+   * @returns {Promise<SimpleCheckbox>}
+   */
   async function checkedFixture() {
     return fixture(`<simple-checkbox checked></simple-checkbox>`);
   }
 
+  /**
+   * @returns {Promise<SimpleCheckbox>}
+   */
   async function withValueFixture() {
     return fixture(`<simple-checkbox value="batman"></simple-checkbox>`);
   }
 
+  /**
+   * @returns {Promise<SimpleCheckbox>}
+   */
   async function requiredFixture() {
     return fixture(`<simple-checkbox required></simple-checkbox>`);
   }
@@ -38,7 +52,7 @@ describe('Active state tests', () => {
       const c = await basicFixture();
       c.required = true;
       assert.isFalse(c.checked);
-      assert.isFalse(c.validate());
+      assert.isFalse(c.validate(c.value));
       assert.isTrue(c.invalid);
     });
 
@@ -47,14 +61,14 @@ describe('Active state tests', () => {
       c.required = true;
       c.checked = true;
       assert.isTrue(c.checked);
-      assert.isTrue(c.validate());
+      assert.isTrue(c.validate(c.value));
       assert.isFalse(c.invalid);
     });
 
     it('valid if not required and not checked', async () => {
       const c = await basicFixture();
       assert.isFalse(c.checked);
-      assert.isTrue(c.validate());
+      assert.isTrue(c.validate(c.value));
       assert.isFalse(c.invalid);
     });
 
@@ -116,7 +130,7 @@ describe('Active state tests', () => {
   });
 
   describe('Change events', () => {
-    let element;
+    let element = /** @type SimpleCheckbox */ (null);
     beforeEach(async () => {
       element = await basicFixture();
     });
@@ -165,6 +179,48 @@ describe('Active state tests', () => {
       element.addEventListener('checked-changed', spy);
       element.checked = true;
       assert.isFalse(spy.called);
+    });
+  });
+
+  describe('onchange', () => {
+    let element = /** @type SimpleCheckbox */ (null);
+    beforeEach(async () => {
+      element = await basicFixture();
+    });
+
+    it('Getter returns previously registered handler', () => {
+      assert.equal(element.onchange, null);
+      const f = () => {};
+      element.onchange = f;
+      assert.isTrue(element.onchange === f);
+    });
+
+    it('Calls registered function', () => {
+      let called = false;
+      const f = () => {
+        called = true;
+      };
+      element.onchange = f;
+      element.checked = true;
+      element.onchange = null;
+      assert.isTrue(called);
+    });
+
+    it('Unregisteres old function', () => {
+      let called1 = false;
+      let called2 = false;
+      const f1 = () => {
+        called1 = true;
+      };
+      const f2 = () => {
+        called2 = true;
+      };
+      element.onchange = f1;
+      element.onchange = f2;
+      element.checked = true;
+      element.onchange = null;
+      assert.isFalse(called1);
+      assert.isTrue(called2);
     });
   });
 

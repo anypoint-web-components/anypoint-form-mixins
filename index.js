@@ -1,1 +1,1 @@
-export { CheckedElementMixin } from './checked-element-mixin.js';
+export { CheckedElementMixin } from './src/CheckedElementMixin.js';

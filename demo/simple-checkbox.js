@@ -5,30 +5,34 @@ import '@polymer/paper-button/paper-button.js';
 class SimpleCheckbox extends CheckedElementMixin(LitElement) {
   static get styles() {
     return css`
-    :host {
-      display: block;
-    }
+      :host {
+        display: block;
+      }
 
-    :host([invalid]) span {
-      color: red;
-    }
+      :host([invalid]) span {
+        color: red;
+      }
 
-    #labelText {
-      display: inline-block;
-      width: 100px;
-    }`;
+      #labelText {
+        display: inline-block;
+        width: 100px;
+      }
+    `;
   }
 
   render() {
-    return html`
-    <input type="checkbox" id="checkbox" @click="${this._onCheckClick}">
-    <span id="labelText">${this.label}</span>
-    <paper-button raised @click="${this._onClick}">validate</paper-button>`;
+    return html` <input
+        type="checkbox"
+        id="checkbox"
+        @click="${this._onCheckClick}"
+      />
+      <span id="labelText">${this.label}</span>
+      <paper-button raised @click="${this._onClick}">validate</paper-button>`;
   }
 
   static get properties() {
     return {
-      label: { type: String }
+      label: { type: String },
     };
   }
 
@@ -42,7 +46,7 @@ class SimpleCheckbox extends CheckedElementMixin(LitElement) {
   }
 
   _onClick() {
-    this.validate();
+    this.validate(this.value);
     this.label = this.invalid ? 'is invalid' : 'is valid';
   }
 }

@@ -4,6 +4,11 @@ interface CheckedElementMixinConstructor {
   new(...args: any[]): CheckedElementMixin;
 }
 
+/**
+ * @fires iron-change Deprecated
+ * @fires checked-changed Deprecated
+ * @fires change
+ */
 interface CheckedElementMixin extends ValidatableMixin {
   /**
    * Gets or sets the state, `true` is checked and `false` is unchecked.
@@ -11,15 +16,18 @@ interface CheckedElementMixin extends ValidatableMixin {
   checked: boolean;
   /**
    * If true, the button toggles the active state with each click or press
-   * of the spacebar.
+   * of the space bar.
+   * @attribute
    */
   toggles: boolean;
   /**
    * The name of this form element.
+   * @attribute
    */
   name: string;
   /**
    * The value of this form control
+   * @attribute
    */
   value: any;
   /**
@@ -29,12 +37,19 @@ interface CheckedElementMixin extends ValidatableMixin {
    * Otherwise, a `required` element will always be considered valid.
    * It's also strongly recommended to provide a visual style for the element
    * when its value is invalid.
+   * @attribute
    */
   required: boolean;
   /**
    * Disabled state of the control
+   * @attribute
    */
   disabled: boolean;
+
+  /**
+   * An event listener for the `change` event or null to unregister
+   */
+  onchange: EventListener|null;
 
   /**
    * @returns false if the element is required and not checked, and true
@@ -48,7 +63,7 @@ interface CheckedElementMixin extends ValidatableMixin {
   _requiredChanged(required: boolean): void;
 
   /**
-   * Fire `iron-changed`for compatybility with iron elements, `change` event
+   * Fire `iron-changed`for compatibility with iron elements, `change` event
    * for consistency with HTML elements, and `checked-changed` for Polymer.
    */
   _checkedChanged(value: boolean): void;

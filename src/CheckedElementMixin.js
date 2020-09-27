@@ -1,6 +1,6 @@
 /**
 @license
-Copyright 2017 Mulesoft.
+Copyright 2017 MuleSoft.
 
 All rights reserved.
 */
@@ -21,16 +21,18 @@ const mxFunction = base => {
         checked: { type: Boolean, reflect: true },
         /**
          * If true, the button toggles the active state with each click or press
-         * of the spacebar.
+         * of the space bar.
+         * @attribute
          */
         toggles: { type: Boolean },
         /**
          * The name of this form element.
+         * @attribute
          */
         name: { type: String },
         /**
          * The value of this form control
-         * @type {*}
+         * @attribute
          */
         value: { type: String },
         /**
@@ -40,19 +42,15 @@ const mxFunction = base => {
          * Otherwise, a `required` element will always be considered valid.
          * It's also strongly recommended to provide a visual style for the element
          * when its value is invalid.
+         * @attribute
          */
         required: { type: Boolean },
         /**
          * Disabled state of the control
+         * @attribute
          */
         disabled: { type: Boolean, reflect: true },
       };
-    }
-
-    constructor() {
-      super();
-      this.value = 'on';
-      this.disabled = false;
     }
 
     get required() {
@@ -110,6 +108,38 @@ const mxFunction = base => {
     }
 
     /**
+     * @returns {EventListener} Previously registered event listener or null
+     */
+    get onchange() {
+      return this._onchange || null;
+    }
+
+    /**
+     * @param {EventListener} value An event listener for the `change` event or null to unregister
+     */
+    set onchange(value) {
+      const old = this._onchange;
+      if (old === value) {
+        return;
+      }
+      if (old) {
+        this.removeEventListener('change', old);
+      }
+      if (typeof value !== 'function') {
+        this._onchange = null;
+      } else {
+        this._onchange = value;
+        this.addEventListener('change', value);
+      }
+    }
+
+    constructor() {
+      super();
+      this.value = 'on';
+      this.disabled = false;
+    }
+
+    /**
      * @return {boolean} false if the element is required and not checked, and true
      * otherwise.
      */
@@ -130,7 +160,7 @@ const mxFunction = base => {
     }
 
     /**
-     * Fire `iron-changed`for compatybility with iron elements, `change` event
+     * Fire `iron-changed`for compatibility with iron elements, `change` event
      * for consistency with HTML elements, and `checked-changed` for Polymer.
      * @param {boolean} value
      */
