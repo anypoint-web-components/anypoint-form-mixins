@@ -68,3 +68,22 @@
 * updated Travis configuration to connect to Sauce Labs. [5b052e9](https://github.com/anypoint-web-components/anypoint-form-mixins/commit/5b052e9354379c18fe26efd575eb824cf844d2b7) by Pawel
 
 
+<a name="1.2.1"></a>
+## [1.2.1](https://github.com/anypoint-web-components/anypoint-form-mixins/compare/1.1.0...1.2.1) (2020-09-27)
+
+### Update
+
+* [ci skip] automated merge master->stage. syncing main branches [529d7ae](https://github.com/anypoint-web-components/anypoint-form-mixins/commit/529d7ae8a41531967d3959ec65b10077554b8416) by Ci agent
+* [ci skip] automated merge master->stage. syncing main branches [3573eaa](https://github.com/anypoint-web-components/anypoint-form-mixins/commit/3573eaa1a0ab112f72bc91a7690014206fa5f7b2) by Ci agent
+
+
+### Features
+
+* adding onchange and updating typpings [6818862](https://github.com/anypoint-web-components/anypoint-form-mixins/commit/6818862d7ed65b633103b002a7acf3aa8c953eb9) by Pawel
+
+
+### Refactor
+
+* upgrading to open-wc standards [4a64e21](https://github.com/anypoint-web-components/anypoint-form-mixins/commit/4a64e2101d22a121422c4d7465fcdf95be027fcc) by Pawel
+
+
