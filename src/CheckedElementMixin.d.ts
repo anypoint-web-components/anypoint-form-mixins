@@ -12,6 +12,7 @@ interface CheckedElementMixinConstructor {
 interface CheckedElementMixin extends ValidatableMixin {
   /**
    * Gets or sets the state, `true` is checked and `false` is unchecked.
+   * @attribute
    */
   checked: boolean;
   /**
@@ -45,11 +46,6 @@ interface CheckedElementMixin extends ValidatableMixin {
    * @attribute
    */
   disabled: boolean;
-
-  /**
-   * An event listener for the `change` event or null to unregister
-   */
-  onchange: EventListener|null;
 
   /**
    * @returns false if the element is required and not checked, and true

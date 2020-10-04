@@ -17,6 +17,7 @@ const mxFunction = base => {
       return {
         /**
          * Gets or sets the state, `true` is checked and `false` is unchecked.
+         * @attribute
          */
         checked: { type: Boolean, reflect: true },
         /**
