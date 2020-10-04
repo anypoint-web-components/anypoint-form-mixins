@@ -87,3 +87,18 @@
 * upgrading to open-wc standards [4a64e21](https://github.com/anypoint-web-components/anypoint-form-mixins/commit/4a64e2101d22a121422c4d7465fcdf95be027fcc) by Pawel
 
 
+<a name="1.2.2"></a>
+## [1.2.2](https://github.com/anypoint-web-components/anypoint-form-mixins/compare/1.2.0...1.2.2) (2020-10-04)
+
+### Update
+
+* updating types [5097e1e](https://github.com/anypoint-web-components/anypoint-form-mixins/commit/5097e1ed67e1422f4960355caa3c529cc299f55a) by Pawel
+* [ci skip] automated merge master->stage. syncing main branches [f1b6a2d](https://github.com/anypoint-web-components/anypoint-form-mixins/commit/f1b6a2dc14b8fc566153bc3697400fc36e1ab693) by Ci agent
+* [ci skip] automated merge master->stage. syncing main branches [529d7ae](https://github.com/anypoint-web-components/anypoint-form-mixins/commit/529d7ae8a41531967d3959ec65b10077554b8416) by Ci agent
+
+
+### Features
+
+* adding onchange and updating typpings [6818862](https://github.com/anypoint-web-components/anypoint-form-mixins/commit/6818862d7ed65b633103b002a7acf3aa8c953eb9) by Pawel
+
+
