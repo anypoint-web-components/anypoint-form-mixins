@@ -7,7 +7,7 @@ interface CheckedElementMixinConstructor {
 /**
  * @fires iron-change Deprecated
  * @fires checked-changed Deprecated
- * @fires change
+ * @fires checkedchange Dispatched when the `checked` property change regardless of the source of the change.
  */
 interface CheckedElementMixin extends ValidatableMixin {
   /**
@@ -15,6 +15,10 @@ interface CheckedElementMixin extends ValidatableMixin {
    * @attribute
    */
   checked: boolean;
+  /**
+   * An event listener for the `change` event or null to unregister
+   */
+  oncheckedchange: EventListener;
   /**
    * If true, the button toggles the active state with each click or press
    * of the space bar.

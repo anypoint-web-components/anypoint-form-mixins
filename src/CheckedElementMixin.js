@@ -111,26 +111,26 @@ const mxFunction = base => {
     /**
      * @returns {EventListener} Previously registered event listener or null
      */
-    get onchange() {
-      return this._onchange || null;
+    get oncheckedchange() {
+      return this._oncheckedchange || null;
     }
 
     /**
      * @param {EventListener} value An event listener for the `change` event or null to unregister
      */
-    set onchange(value) {
-      const old = this._onchange;
+    set oncheckedchange(value) {
+      const old = this._oncheckedchange;
       if (old === value) {
         return;
       }
       if (old) {
-        this.removeEventListener('change', old);
+        this.removeEventListener('checkedchange', old);
       }
       if (typeof value !== 'function') {
-        this._onchange = null;
+        this._oncheckedchange = null;
       } else {
-        this._onchange = value;
-        this.addEventListener('change', value);
+        this._oncheckedchange = value;
+        this.addEventListener('checkedchange', value);
       }
     }
 
@@ -167,7 +167,9 @@ const mxFunction = base => {
      */
     _checkedChanged(value) {
       this.active = value;
-      this.dispatchEvent(new CustomEvent('change'));
+      // this event to be moved to a specific implementation to notify on user interaction.
+      // this.dispatchEvent(new CustomEvent('change'));
+      this.dispatchEvent(new CustomEvent('checkedchange'));
       this.dispatchEvent(new CustomEvent('iron-change'));
       this.dispatchEvent(
         new CustomEvent('checked-changed', {

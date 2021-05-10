@@ -135,17 +135,17 @@ describe('Active state tests', () => {
       element = await basicFixture();
     });
 
-    it('Dispatches change event', () => {
+    it('Dispatches the checkedchange event', () => {
       const spy = sinon.spy();
-      element.addEventListener('change', spy);
+      element.addEventListener('checkedchange', spy);
       element.checked = true;
       assert.isTrue(spy.called);
     });
 
-    it('Ignores change event when the value was already set', () => {
+    it('Ignores the change event when the value was already set', () => {
       element.checked = true;
       const spy = sinon.spy();
-      element.addEventListener('change', spy);
+      element.addEventListener('checkedchange', spy);
       element.checked = true;
       assert.isFalse(spy.called);
     });
@@ -182,17 +182,17 @@ describe('Active state tests', () => {
     });
   });
 
-  describe('onchange', () => {
+  describe('checkedchange', () => {
     let element = /** @type SimpleCheckbox */ (null);
     beforeEach(async () => {
       element = await basicFixture();
     });
 
     it('Getter returns previously registered handler', () => {
-      assert.equal(element.onchange, null);
+      assert.equal(element.oncheckedchange, null);``
       const f = () => {};
-      element.onchange = f;
-      assert.isTrue(element.onchange === f);
+      element.oncheckedchange = f;
+      assert.isTrue(element.oncheckedchange === f);
     });
 
     it('Calls registered function', () => {
@@ -200,9 +200,9 @@ describe('Active state tests', () => {
       const f = () => {
         called = true;
       };
-      element.onchange = f;
+      element.oncheckedchange = f;
       element.checked = true;
-      element.onchange = null;
+      element.oncheckedchange = null;
       assert.isTrue(called);
     });
 
@@ -215,10 +215,10 @@ describe('Active state tests', () => {
       const f2 = () => {
         called2 = true;
       };
-      element.onchange = f1;
-      element.onchange = f2;
+      element.oncheckedchange = f1;
+      element.oncheckedchange = f2;
       element.checked = true;
-      element.onchange = null;
+      element.oncheckedchange = null;
       assert.isFalse(called1);
       assert.isTrue(called2);
     });
