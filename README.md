@@ -1,8 +1,8 @@
-[![Build Status](https://travis-ci.com/anypoint-web-components/anypoint-form-mixins.svg)](https://travis-ci.com/anypoint-web-components/anypoint-form-mixins)
+# Deprecated
 
-[![Published on NPM](https://img.shields.io/npm/v/@anypoint-web-components/anypoint-form-mixins.svg)](https://www.npmjs.com/package/@anypoint-web-components/anypoint-form-mixins)
+This component has been moved to `anypoint-web-components/awc`.
 
-# Anypoint form control mixins for web components
+-----
 
 ## checked-element-mixin
 
@@ -11,6 +11,7 @@ Use `CheckedElementMixin` to implement an element that can be checked like nativ
 ## Usage
 
 ### Installation
+
 ```
 npm install --save @anypoint-web-components/anypoint-form-mixins
 ```
